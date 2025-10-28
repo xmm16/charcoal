@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 token_ll code;
+size_t code_lex_index;
 
 token_ll create_token_ll(){
 	token_ll result;
