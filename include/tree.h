@@ -29,7 +29,8 @@ struct p_node_s {
   p_node_t type;
   p_node_r rank;
   p_node* back;
-  p_node* next;
+  p_node* next_1;
+  p_node* next_2;
 };
 
 p_node create_tree(p_node_t type, p_node_r rank);
