@@ -105,22 +105,22 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
       if (!num_success) num_success = true;
     }
 
-    if (num_success) goto skip_word;
-    type = WORD;
+    if (!num_success){
+      type = WORD;
 
-    while (letter_or_number(raw_code[i]) && strlen_raw_code > i){
-      while (multi_char_arg_len + 2 > multi_char_arg_size){
-        multi_char_arg_size *= 2;
-        multi_char_arg = realloc(multi_char_arg, multi_char_arg_size);
+      while (letter_or_number(raw_code[i]) && strlen_raw_code > i){
+        while (multi_char_arg_len + 2 > multi_char_arg_size){
+          multi_char_arg_size *= 2;
+          multi_char_arg = realloc(multi_char_arg, multi_char_arg_size);
+        }
+        
+        multi_char_arg[multi_char_arg_len] = raw_code[i];
+        multi_char_arg[multi_char_arg_len + 1] = '\0';
+        multi_char_arg_len++;
+        i++;
       }
-      
-      multi_char_arg[multi_char_arg_len] = raw_code[i];
-      multi_char_arg[multi_char_arg_len + 1] = '\0';
-      multi_char_arg_len++;
-      i++;
     }
 
-skip_word:
     if (multi_char_arg[0] != '\0'){
       token_ll_add_next(token_ll_index(code, code_lex_index), type, multi_char_arg);
       code_lex_index++;
