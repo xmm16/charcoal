@@ -124,6 +124,7 @@ skip_word:
     if (multi_char_arg[0] != '\0'){
       token_ll_add_next(token_ll_index(code, code_lex_index), type, multi_char_arg);
       code_lex_index++;
+      i--;
       continue;
     }
 
