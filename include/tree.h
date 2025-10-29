@@ -37,5 +37,6 @@ struct p_node_s {
 
 p_node create_tree(p_node_t type, p_node_r rank, size_t start, size_t end);
 void insert_tree(p_node* tree, p_node* back, p_node_t type, p_node_r rank, size_t start, size_t end);
+//                   ^^^^ for example: insert_tree(&(code_tree.left->left->right), &(code_tree.left->left), EXPR, COMPLEX, i, i+2);
 
 #endif
