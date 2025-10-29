@@ -65,7 +65,7 @@ struct p_node_s {
   printf("%d\n", access_tree(&code_tree, 2)->type);
   */
 
-  p_node code_tree = create_tree(PROGRAM, COMPLEX);
+  p_node code_tree = create_tree(PROGRAM, COMPLEX, 0, code_lex_index);
 
   for (int i = 0; i < code_lex_index; i++){
     token* current_token = token_from_ll(lexed_code, i);
