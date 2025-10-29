@@ -8,7 +8,7 @@ bool is_number(char symbol){
 }
 
 bool letter_or_number(char symbol){
-        return (symbol >= 48 && symbol <=57) || (symbol >= 65 && symbol <= 122);
+        return (symbol >= 48 && symbol <=57) || (symbol >= 65 && symbol <= 90) || (symbol >= 97 && symbol <= 122)|| (symbol == 95);
 }
 
 char* strip(char* original){
@@ -16,7 +16,11 @@ char* strip(char* original){
 
         while (original[displacement] == ' ') displacement++;
         while (original[strlen(original) - 1] == ' ') original[strlen(original) - 2] = '\0';
-        return original + displacement;
+
+        char* new = malloc(strlen(original) + 1);
+        strcpy(new, original + displacement);
+        free(original);
+        return new;
 }
 
 char* substring(char* original, size_t start, size_t end){ // needs to be freed
@@ -31,10 +35,11 @@ char* substring(char* original, size_t start, size_t end){ // needs to be freed
 
 token_ll lex(char* raw_code, size_t* code_lex_index_param){
 	token_ll code = create_token_ll();
+  size_t strlen_raw_code = strlen(raw_code);
 	size_t code_lex_index = 0;
 	
-	for (int i = 0; i < strlen(raw_code); i++){
-    if (strlen(raw_code) > i + 2){
+	for (int i = 0; i < strlen_raw_code; i++){
+    if (strlen_raw_code > i + 2){
       char* two_char_compare = substring(raw_code, i, i+2);
 
       if (strcmp(two_char_compare, "//") == 0){
@@ -56,10 +61,11 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
     }
 
 		if (raw_code[i] == '"'){
-      if (strlen(raw_code) > i + 1){
+      if (strlen_raw_code > i + 1){
         size_t start_quote = i + 1;
+        i++;
 
-        while (raw_code[i] != '"' && strlen(raw_code) > i) i++;
+        while (raw_code[i] != '"' && strlen_raw_code > i) i++;
 
         char* to_add = substring(raw_code, start_quote, i);
         token_ll_add_next(token_ll_index(code, code_lex_index), QUOTE, to_add);
@@ -75,42 +81,50 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
     // if any characters are a symbol or a space, that's when you break out.
     // one period shouldn't count if it's a number, but multiple should.
 
-    while (raw_code[i] == ' ' || raw_code[i] == '\t' || raw_code[i] == '\n') continue;
+    if (raw_code[i] == ' ' || raw_code[i] == '\t' || raw_code[i] == '\n') continue;
 
-    size_t multi_char_arg_size = 1;
+    size_t multi_char_arg_size = 3;
+    size_t multi_char_arg_len = 0;
     char* multi_char_arg = malloc(multi_char_arg_size);
     multi_char_arg[0] = '\0';
 
     token_type type = INT;
-      
-    while (is_number(raw_code[i])){ // is_number includes periods
-      if (strlen(multi_char_arg) + 2 > multi_char_arg_size){
+    bool num_success = false;
+
+    while (is_number(raw_code[i]) && strlen_raw_code > i){ // is_number includes periods
+      while (multi_char_arg_len + 2 > multi_char_arg_size){
         multi_char_arg_size *= 2;
-        multi_char_arg = (char*) realloc(multi_char_arg, multi_char_arg_size);
+        multi_char_arg = realloc(multi_char_arg, multi_char_arg_size);
       }
       if (raw_code[i] == '.') type = FLOAT;
 
-      multi_char_arg[strlen(multi_char_arg) - 1] = raw_code[i];
-      multi_char_arg[strlen(multi_char_arg)] = '\0';
+      multi_char_arg[multi_char_arg_len] = raw_code[i];
+      multi_char_arg[multi_char_arg_len + 1] = '\0';
+      multi_char_arg_len++;
       i++;
+      if (!num_success) num_success = true;
     }
 
-    if (multi_char_arg[0] == '\0') type = WORD;
+    if (num_success) goto skip_word;
+    type = WORD;
 
-    while (letter_or_number(raw_code[i])){
-      if (strlen(multi_char_arg) + 2 > multi_char_arg_size){
+    while (letter_or_number(raw_code[i]) && strlen_raw_code > i){
+      while (multi_char_arg_len + 2 > multi_char_arg_size){
         multi_char_arg_size *= 2;
-        multi_char_arg = (char*) realloc(multi_char_arg, multi_char_arg_size);
+        multi_char_arg = realloc(multi_char_arg, multi_char_arg_size);
       }
       
-      multi_char_arg[strlen(multi_char_arg) - 1] = raw_code[i];
-      multi_char_arg[strlen(multi_char_arg)] = '\0';
+      multi_char_arg[multi_char_arg_len] = raw_code[i];
+      multi_char_arg[multi_char_arg_len + 1] = '\0';
+      multi_char_arg_len++;
       i++;
     }
 
+skip_word:
     if (multi_char_arg[0] != '\0'){
       token_ll_add_next(token_ll_index(code, code_lex_index), type, multi_char_arg);
       code_lex_index++;
+      continue;
     }
 
     token_ll_add_next(token_ll_index(code, code_lex_index), (token_type) raw_code[i], NULL);

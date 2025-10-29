@@ -32,11 +32,11 @@ token* token_from_ll(token_ll to_get_value_of, size_t index){
 
 
 int main(){
-	code = create_token_ll();
+	token_ll code = create_token_ll();
 	token_ll_add_next(token_ll_index(code, 0), A_U, NULL);
 	token_ll_add_next(token_ll_index(code, 1), D_U, NULL);
 	token_ll_add_next(token_ll_index(code, 2), F_U, NULL);
-	printf("%d\n", token_from_ll(code, 1)->id);
+	printf("%d\n", token_from_ll(code, 2)->id);
 
 }
 
