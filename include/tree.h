@@ -29,12 +29,13 @@ struct p_node_s {
   p_node_t type;
   p_node_r rank;
   p_node* back;
-  p_node* next_1;
-  p_node* next_2;
+  size_t start;
+  size_t end;
+  p_node* left;
+  p_node* right;
 };
 
-p_node create_tree(p_node_t type, p_node_r rank);
-void insert_tree(p_node* tree, size_t index, p_node_t type, p_node_r rank);
-p_node* access_tree(p_node* tree, size_t index);
+p_node create_tree(p_node_t type, p_node_r rank, size_t start, size_t end);
+void insert_tree(p_node* tree, p_node* back, p_node_t type, p_node_r rank, size_t start, size_t end);
 
 #endif
