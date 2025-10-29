@@ -1,4 +1,4 @@
-SRC = src/main.c
+SRC = src/main.c src/lex/lex_ll.c src/lex.c
 END = coalc.bin 
 
 COMP = gcc
