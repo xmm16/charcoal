@@ -1,4 +1,5 @@
 #include "lex.h"
+#include "tree.h"
 #include <stdio.h>
 
 int main(int argc, char** argv){
@@ -29,5 +30,57 @@ int main(int argc, char** argv){
     }
   */
 
+  /*
+  enum p_node_type_e {
+  PROGRAM,
+  STATEMENT,
+  PAREN_EXPR,
+  EXPR,
+  ASSIGN,
+  CALL,
+  SEQ,
+  VEC
+};
 
+enum p_node_rank_e {
+  COMPLEX,
+  LITERAL
+};
+
+struct p_node_s {
+  p_node_t type;
+  p_node_r rank;
+  p_node* back;
+  p_node* next;
+};
+
+  p_node create_tree(p_node_t type, p_node_r rank);
+  void insert_tree(p_node* tree, size_t index, p_node_t type, p_node_r rank);
+  p_node* access_tree(p_node* tree, size_t index);
+
+  p_node code_tree = create_tree(PROGRAM, COMPLEX);
+  insert_tree(&code_tree, 1, STATEMENT, COMPLEX);
+  insert_tree(&code_tree, 2, CALL, LITERAL);
+
+  printf("%d\n", access_tree(&code_tree, 2)->type);
+  */
+
+  p_node code_tree = create_tree(PROGRAM, COMPLEX);
+
+  for (int i = 0; i < code_lex_index; i++){
+    token* current_token = token_from_ll(lexed_code, i);
+    int id = current_token->id;
+    char* arg = current_token->args;
+
+    /*
+    Ok so there are gonna be a few priority levels. I think just follow
+    C's order of operations. That shouldddd work but idk we'll see.
+    */
+
+    // just implementing basic math ops as a test
+
+    if (current_token->next->id == '+') {
+      
+    }
+  }
 }
