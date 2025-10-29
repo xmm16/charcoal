@@ -22,12 +22,13 @@ struct token_s {
 	token_type id;
 	char* args;
 	token* next;
+	token* back;
 };
 
 typedef token* token_ll;
 
 token_ll create_token_ll();
-void token_ll_add_next(token_ll to_push_to, token_type id, char* args);
+void token_ll_add_next(token_ll to_push_to, token_ll back, token_type id, char* args);
 token_ll token_ll_index(token_ll to_get_index_of, size_t index);
 token* token_from_ll(token_ll to_get_value_of, size_t index);
 token_ll lex(char* raw_code, size_t* code_lex_index_param);

@@ -68,7 +68,7 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
         while (raw_code[i] != '"' && strlen_raw_code > i) i++;
 
         char* to_add = substring(raw_code, start_quote, i);
-        token_ll_add_next(token_ll_index(code, code_lex_index), QUOTE, to_add);
+        token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), QUOTE, to_add);
         code_lex_index++;
         continue;
       }
@@ -122,13 +122,13 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
     }
 
     if (multi_char_arg[0] != '\0'){
-      token_ll_add_next(token_ll_index(code, code_lex_index), type, multi_char_arg);
+      token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), type, multi_char_arg);
       code_lex_index++;
       i--;
       continue;
     }
 
-    token_ll_add_next(token_ll_index(code, code_lex_index), (token_type) raw_code[i], NULL);
+    token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index -1), (token_type) raw_code[i], NULL);
     code_lex_index++;
 	}
 

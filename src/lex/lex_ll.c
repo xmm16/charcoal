@@ -7,10 +7,11 @@ token_ll create_token_ll(){
 	return result;
 }
 
-void token_ll_add_next(token_ll to_push_to, token_type id, char* args){ 
+void token_ll_add_next(token_ll to_push_to, token_ll back, token_type id, char* args){ 
 	to_push_to->id = id;
 	to_push_to->args = args;
 	to_push_to->next = malloc(sizeof(token));
+	to_push_to->back = back;
 }
 
 token_ll token_ll_index(token_ll to_get_index_of, size_t index){

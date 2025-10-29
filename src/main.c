@@ -66,21 +66,19 @@ struct p_node_s {
   */
 
   p_node code_tree = create_tree(PROGRAM, COMPLEX, 0, code_lex_index);
+  p_node* local_code_tree = &code_tree;
 
   for (int i = 0; i < code_lex_index; i++){
     token* current_token = token_from_ll(lexed_code, i);
-    int id = current_token->id;
-    char* arg = current_token->args;
 
     /*
-    Ok so there are gonna be a few priority levels. I think just follow
-    C's order of operations. That shouldddd work but idk we'll see.
+    This is the idea:
+     So for each type, so for + and - and also function calls and things, we use
+     functions to create a new tree for that group, like an add function and a subtract
+     function, and a call processing function (all variables are unsigned iXX types, and
+     remember, bitcasting doesn't happen in the actual assembly, so still optimized).
+
+     Then the trees are merged using a manual connection. It should work fine, I think.
     */
-
-    // just implementing basic math ops as a test
-
-    if (current_token->next->id == '+') {
-      
-    }
   }
 }
