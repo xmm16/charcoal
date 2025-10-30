@@ -81,6 +81,31 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
       }
     }
 
+		if (raw_code[i] == '('){
+      if (strlen_raw_code > i + 1){
+        size_t start_quote = i + 1;
+        i++;
+	size_t paren_number = 1;
+
+        while (strlen_raw_code > i){
+		if (raw_code[i] == '(') paren_number++;
+		else if (raw_code[i] == ')') paren_number--;
+		
+		if (paren_number == 0) break;
+		i++;}
+        char* to_add = substring(raw_code, start_quote, i);
+	size_t local_code_lex_index;
+	token_ll lexed_to_add = lex(to_add, &local_code_lex_index);
+        if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), LPAREN, NULL);
+	else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, LPAREN, NULL);
+	
+	token_ll_index(code, code_lex_index)->carry = lexed_to_add;
+
+        code_lex_index++;
+        continue;
+      }
+    }
+
     // first check for space or other breaker. then, if it is, first try to
     // see if the word is a variable by checking if the first character is a number.
     // then if it is, define it as a number and add the token.

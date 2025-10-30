@@ -23,7 +23,7 @@ int main(int argc, char** argv){
           break;
 
         default:
-          printf("id: (symbol) %c\narg: %s\n", id, token_from_ll(lexed_code, i)->args);
+          printf("id: (symbol) %c\n", token_from_ll(lexed_code, i)->carry->id);
       }
 
       printf("\n");

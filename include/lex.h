@@ -18,14 +18,15 @@ enum token_type_e {NUL, SOH, STX, ETX, EOT, ENQ, ACK, BEL, BS, HT, LF, VT,
   P_L, Q_L, R_L, S_L, T_L, U_L, V_L, W_L, X_L, Y_L, Z_L, LBRACE, PIPE, RBRACE,
   TILDA, DEL, WORD, INT, FLOAT}; // ADD MORE WHENEVER
 
+typedef token* token_ll;
+
 struct token_s {
 	token_type id;
 	char* args;
 	token* next;
 	token* back;
+	token_ll carry;
 };
-
-typedef token* token_ll;
 
 token_ll create_token_ll();
 void token_ll_add_next(token_ll to_push_to, token_ll back, token_type id, char* args);
