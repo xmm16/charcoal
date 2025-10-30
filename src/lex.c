@@ -96,8 +96,8 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
         char* to_add = substring(raw_code, start_quote, i);
 	size_t local_code_lex_index;
 	token_ll lexed_to_add = lex(to_add, &local_code_lex_index);
-        if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), LPAREN, NULL);
-	else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, LPAREN, NULL);
+        if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), PAREN, NULL);
+	else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, PAREN, NULL);
 	
 	token_ll_index(code, code_lex_index)->carry = lexed_to_add;
 
