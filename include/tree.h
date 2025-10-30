@@ -9,20 +9,20 @@ typedef enum p_node_type_e p_node_t;
 typedef enum p_node_rank_e p_node_r;
 
 
-enum p_node_type_e {NUL, SOH, STX, ETX, EOT, ENQ, ACK, BEL, BS, HT, LF, VT,
-	FR, CR, SO, SI, DLE, DC1, DC2, DC3, DC4, NAK, SYN, ETB, CAN, EM,
-	SUB, ESC, FS, GS, RS, US, SPACE, EXCLAM, QUOTE, HASH, DOLLAR, PERCENT,
-	AMPER, APOST, LPAREN, RPAREN, ASTER, PLUS, COMMA, MINUS, DOT, SLASH,
-	ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, COLON,
-	SCOLON, LESS, EQUAL, GREATER, QUESTION, AT, A_U, B_U, C_U, D_U, E_U, F_U,
-	G_U, H_U, I_U, J_U, K_U, L_U, M_U, N_U, O_U, P_U, Q_U, R_U, S_U, T_U, U_U,
-	V_U, W_U, X_U, Y_U, Z_U, LBRACKET, BACKSLASH, RBRACKET, CARET, UNDERSCORE, BTICK,
-  A_L, B_L, C_L, D_L, E_L, F_L, G_L, H_L, I_L, J_L, K_L, L_L, M_L, N_L, O_L, 
-  P_L, Q_L, R_L, S_L, T_L, U_L, V_L, W_L, X_L, Y_L, Z_L, LBRACE, PIPE, RBRACE,
-  TILDA, DEL, PROGRAM, STATEMENT, PAREN_EXPR, EXPR, ASSIGN, CALL, SEQ, VEC, VAR, INT, FLOAT}; // ADD MORE WHENEVER
+enum p_node_type_e {NUL_p, SOH_p, STX_p, ETX_p, EOT_p, ENQ_p, ACK_p, BEL_p, BS_p, HT_p, LF_p, VT_p,
+	FR_p, CR_p, SO_p, SI_p, DLE_p, DC1_p, DC2_p, DC3_p, DC4_p, NAK_p, SYN_p, ETB_p, CAN_p, EM_p,
+	SUB_p, ESC_p, FS_p, GS_p, RS_p, US_p, SPACE_p, EXCLAM_p, QUOTE_p, HASH_p, DOLLAR_p, PERCENT_p,
+	AMPER_p, APOST_p, LPAREN_p, RPAREN_p, ASTER_p, PLUS_p, COMMA_p, MINUS_p, DOT_p, SLASH_p,
+	ZERO_p, ONE_p, TWO_p, THREE_p, FOUR_p, FIVE_p, SIX_p, SEVEN_p, EIGHT_p, NINE_p, COLON_p,
+	SCOLON_p, LESS_p, EQUAL_p, GREATER_p, QUESTION_p, AT_p, A_U_p, B_U_p, C_U_p, D_U_p, E_U_p, F_U_p,
+	G_U_p, H_U_p, I_U_p, J_U_p, K_U_p, L_U_p, M_U_p, N_U_p, O_U_p, P_U_p, Q_U_p, R_U_p, S_U_p, T_U_p, U_U_p,
+	V_U_p, W_U_p, X_U_p, Y_U_p, Z_U_p, LBRACKET_p, BACKSLASH_p, RBRACKET_p, CARET_p, UNDERSCORE_p, BTICK_p,
+  A_L_p, B_L_p, C_L_p, D_L_p, E_L_p, F_L_p, G_L_p, H_L_p, I_L_p, J_L_p, K_L_p, L_L_p, M_L_p, N_L_p, O_L_p, 
+  P_L_p, Q_L_p, R_L_p, S_L_p, T_L_p, U_L_p, V_L_p, W_L_p, X_L_p, Y_L_p, Z_L_p, LBRACE_p, PIPE_p, RBRACE_p,
+  TILDA_p, DEL_p, PROGRAM_p, STATEMENT_p, PAREN_EXPR_p, EXPR_p, ASSIGN_p, CALL_p, SEQ_p, VEC_p, VAR_p, INT_p, FLOAT_p}; // ADD MORE WHENEVER
 
 enum p_node_rank_e {
-  COMPLEX, /* literal means that something is only one layer, like a number,
+  COMPLEX, /* literal means that something is only one layer_p, like a number_p,
               while complex means multiple layers, like an expression with a variable */
   LITERAL
 };

@@ -6,7 +6,7 @@ int main(int argc, char** argv){
   size_t code_lex_index;
   token_ll lexed_code = lex(argv[1], &code_lex_index);
 
-  /* PRINT LEX
+  // PRINT LEX
     for (int i = 0; i < code_lex_index; i++){
       int id = token_from_ll(lexed_code, i)->id;
       switch (id){
@@ -28,7 +28,7 @@ int main(int argc, char** argv){
 
       printf("\n");
     }
-  */
+  //
 
   /*
   enum p_node_type_e {
@@ -65,11 +65,10 @@ struct p_node_s {
   printf("%d\n", access_tree(&code_tree, 2)->type);
   */
 
-  p_node code_tree = create_tree(PROGRAM, COMPLEX, 0, code_lex_index);
-  p_node* local_code_tree = &code_tree;
+//  p_node code_tree = create_tree(PROGRAM_p, COMPLEX, 0, code_lex_index);
+//  p_node* local_code_tree = &code_tree;
 
-  for (int i = 0; i < code_lex_index; i++){
-    token* current_token = token_from_ll(lexed_code, i);
+//    token* current_token = token_from_ll(lexed_code, i);
 
     /*
     This is the idea:
@@ -80,5 +79,4 @@ struct p_node_s {
 
      Then the trees are merged using a manual connection. It should work fine, I think.
     */
-  }
 }

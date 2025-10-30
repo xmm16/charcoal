@@ -12,6 +12,12 @@ bool letter_or_number(char symbol){
 }
 
 char* strip(char* original){
+	if (strlen(original) < 3) {
+		if (original[0] == ' '){ original[0] = original[1]; original[1] = '\0';}
+		if (original[1] == ' ') original[1] = '\n';
+		return original;
+	}
+
         size_t displacement = 0;
 
         while (original[displacement] == ' ') displacement++;
@@ -68,7 +74,8 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
         while (raw_code[i] != '"' && strlen_raw_code > i) i++;
 
         char* to_add = substring(raw_code, start_quote, i);
-        token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), QUOTE, to_add);
+        if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), QUOTE, to_add);
+	else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, QUOTE, to_add);
         code_lex_index++;
         continue;
       }
@@ -122,13 +129,15 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
     }
 
     if (multi_char_arg[0] != '\0'){
-      token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), type, multi_char_arg);
+      if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), type, multi_char_arg);
+      else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, type, multi_char_arg);
       code_lex_index++;
       i--;
       continue;
     }
 
-    token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index -1), (token_type) raw_code[i], NULL);
+    if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index -1), (token_type) raw_code[i], NULL);
+    else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, (token_type) raw_code[i], NULL);
     code_lex_index++;
 	}
 
