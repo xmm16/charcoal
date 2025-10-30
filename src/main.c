@@ -6,7 +6,7 @@ int main(int argc, char** argv){
   size_t code_lex_index;
   token_ll lexed_code = lex(argv[1], &code_lex_index);
 
-  // PRINT LEX
+  /* PRINT LEX
     for (int i = 0; i < code_lex_index; i++){
       int id = token_from_ll(lexed_code, i)->id;
       switch (id){
@@ -30,7 +30,7 @@ int main(int argc, char** argv){
     }
   //
 
-  /*
+  *//*
   enum p_node_type_e {
   PROGRAM,
   STATEMENT,
