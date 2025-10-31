@@ -2,6 +2,7 @@
 #include "lex.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 p_node create_tree(p_node_t type, p_node_r rank, size_t start, size_t end){
   p_node result;
@@ -60,7 +61,7 @@ void equals(p_node* code_tree, p_node* back, token_ll code, size_t code_length, 
   // FOR EACH COMPLEX BRANCH, RUN TREE ENGINE ON IT AGAIN
 }
 
-void equals(p_node* code_tree, p_node* back, token_ll code, size_t code_length, size_t index){
+void def(p_node* code_tree, p_node* back, token_ll code, size_t code_length, size_t index){
   p_node_t type = 'D';
   p_node_r rank = LITERAL;
   size_t start = index;
@@ -72,15 +73,20 @@ void equals(p_node* code_tree, p_node* back, token_ll code, size_t code_length, 
 
 void tree_engine(p_node* code_tree, token_ll code, size_t code_length){ // 
   p_node* local_code_tree = code_tree;
+  uint8_t is_literal = 1;
   for (int i = 0; i < code_length; i++){
     switch (token_ll_index(code, i)->id) {
       case '=':
         equals(local_code_tree, local_code_tree->back, code, code_length, i);
+	is_literal = 0;
         break;
       default:
         break;
     }
   }
+  if (is_literal) def(local_code_tree, local_code_tree->back, code, code_length, 0);
   // for (int i = 0; i < code_length; i++)
     // def(local_code_tree, local_code_tree->back, code, code_length, i);
 }
+
+
