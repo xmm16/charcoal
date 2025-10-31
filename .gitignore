@@ -1,4 +1,4 @@
 *.gch
 *.bin
 .cache
-.json
+*.json
