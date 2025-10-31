@@ -27,30 +27,37 @@ void insert_tree(p_node* tree, p_node* back, p_node_t type, p_node_r rank, size_
 
 // make sure to split the following up into organized code files if possible
 void equals(p_node* code_tree, token_ll code, size_t code_length, size_t index){
-  p_node_t type;
-  p_node_r rank;
+  p_node_t type = ASSIGN_p;
+  p_node_r rank = COMPLEX;
   size_t start;
   size_t end;
 
-  p_node_t type_l;
-  p_node_r rank_l;
   size_t start_l;
   size_t end_l;
 
-  p_node_t type_r;
-  p_node_r rank_r;
   size_t start_r;
   size_t end_r;
 
   if (index + 2 < code_length && token_ll_index(code, index + 2)->id == PAREN){
-    
+    start_r = index + 1;
+    end_r = index + 3;
+  } else {
+    start_r = index + 1;
+    end_r = index + 2;
   }
 
-  insert_tree(code_tree->left, code_tree, type, rank, start, end); // main branch
-  insert_tree(code_tree->left->left, code_tree->left, type_l, rank_l, start_l, end_l); // left side of equation branch
-  insert_tree(code_tree->left->right, code_tree->left, type_r, rank_r, start_l, end_l); // right side of equation branch
+  if (index - 2 >= 0 && token_ll_index(code,index - 1)->id == PAREN && token_ll_index(code, index - 2)->id == WORD){
+    start_l = index - 2;
+    end_l = index;
+  } else {
+    start_r = index - 1;
+    end_l = index;
+  }
 
-  // FOR EACH COMPLEX BRANCH, RUN TREE ENGINE ON IT AGAIN. IF LITERAL, NOT NECESSARY
+  insert_tree(code_tree->left, code_tree, type, rank, start_l, end_r); // main branch
+  tree_engine(token_ll_index(code_tree->left, token_ll_index(code, start_l), end_l);
+  tree_engine(token_ll_index(code_tree->left, token_ll_index(code, start_r), end_r);
+  // FOR EACH COMPLEX BRANCH, RUN TREE ENGINE ON IT AGAIN
 }
 
 void tree_engine(p_node* code_tree, token_ll code, size_t code_length){
