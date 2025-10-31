@@ -1,0 +1,86 @@
+[
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/eval_nodes.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/eval_nodes.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  },
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/IR_out.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/IR_out.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  },
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/lex.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/lex.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  },
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/main.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/main.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  },
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/tree.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/tree.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  },
+  {
+    "arguments": [
+      "/sbin/gcc",
+      "-c",
+      "-I",
+      "include",
+      "-o",
+      "coalc.bin",
+      "src/lex/lex_ll.c"
+    ],
+    "directory": "/home/eshnd/Projects/charcoal",
+    "file": "/home/eshnd/Projects/charcoal/src/lex/lex_ll.c",
+    "output": "/home/eshnd/Projects/charcoal/coalc.bin"
+  }
+]
