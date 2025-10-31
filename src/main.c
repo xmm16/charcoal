@@ -79,4 +79,7 @@ struct p_node_s {
 
      Then the trees are merged using a manual connection. It should work fine, I think.
     */
+
+  p_node code_tree = create_tree(PROGRAM_p, COMPLEX, 0, code_lex_index);
+  tree_engine(&code_tree, lexed_code, code_lex_index);
 }

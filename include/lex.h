@@ -6,7 +6,7 @@
 typedef struct token_s token;
 typedef enum token_type_e token_type;
 
-enum token_type_e {NUL, SOH, STX, ETX, EOT, ENQ, ACK, BEL, BS, HT, LF, VT,
+enum token_type_e {NUL, EQUAL_SLASH, EQUAL_ARROW, EQUAL_EQUAL, EOT, ENQ, ACK, BEL, BS, HT, LF, VT,
 	FR, CR, SO, SI, DLE, DC1, DC2, DC3, DC4, NAK, SYN, ETB, CAN, EM,
 	SUB, ESC, FS, GS, RS, US, SPACE, EXCLAM, QUOTE, HASH, DOLLAR, PERCENT,
 	AMPER, APOST, PAREN, RPAREN, ASTER, PLUS, COMMA, MINUS, DOT, SLASH,

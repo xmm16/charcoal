@@ -1,8 +1,9 @@
 #ifndef TREE
 #define TREE
-#include <stddef.h> // I forgot why I chose to include this everywhere
+#include <stddef.h>// I forgot why I chose to include this everywhere
                     // but I'm gonna assume it's important, soo I won't be
                     // removing it.
+#include "lex.h"
 
 typedef struct p_node_s p_node;
 typedef enum p_node_type_e p_node_t;
@@ -39,6 +40,7 @@ struct p_node_s {
 
 p_node create_tree(p_node_t type, p_node_r rank, size_t start, size_t end);
 void insert_tree(p_node* tree, p_node* back, p_node_t type, p_node_r rank, size_t start, size_t end);
+void tree_engine(p_node* code_tree, token_ll code, size_t code_length);
 //                   ^^^^ for example: insert_tree(&(code_tree.left->left->right), &(code_tree.left->left), EXPR, COMPLEX, i, i+2);
 
 #endif

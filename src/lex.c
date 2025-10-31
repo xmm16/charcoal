@@ -113,7 +113,7 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
     // if any characters are a symbol or a space, that's when you break out.
     // one period shouldn't count if it's a number, but multiple should.
 
-    if (raw_code[i] == ' ' || raw_code[i] == '\t' || raw_code[i] == '\n') continue;
+    if (raw_code[i] == ' ' || raw_code[i] == '\t') continue;
 
     size_t multi_char_arg_size = 3;
     size_t multi_char_arg_len = 0;
@@ -153,7 +153,7 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
       }
     }
 
-    if (multi_char_arg[0] != '\0'){
+    if (multi_char_arg[0] != '\0'){ // if its either a word or a number
       if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index - 1), type, multi_char_arg);
       else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, type, multi_char_arg);
       code_lex_index++;
@@ -161,8 +161,17 @@ token_ll lex(char* raw_code, size_t* code_lex_index_param){
       continue;
     }
 
-    if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index -1), (token_type) raw_code[i], NULL);
-    else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, (token_type) raw_code[i], NULL);
+
+    if (raw_code[i] == '=' && i + 1 < strlen(raw_code) && raw_code[i + 1] == '>') {
+      type = EQUAL_ARROW;
+    }else  if (raw_code[i] == '=' && i + 1 < strlen(raw_code) && raw_code[i + 1] == '=') {
+      type = EQUAL_EQUAL;
+    }else  if (raw_code[i] == '=' && i + 1 < strlen(raw_code) && raw_code[i + 1] == '/') {
+      type = EQUAL_SLASH;
+    }else {type = raw_code[i];}
+
+    if (code_lex_index != 0) token_ll_add_next(token_ll_index(code, code_lex_index), token_ll_index(code, code_lex_index -1), type, NULL);
+    else token_ll_add_next(token_ll_index(code, code_lex_index), NULL, type, NULL);
     code_lex_index++;
 	}
 
