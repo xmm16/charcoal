@@ -65,7 +65,7 @@ void tree_engine(p_node* code_tree, token_ll code, size_t code_length){ //
   for (int i = 0; i < code_length; i++){
     switch (token_ll_index(code, i)->id) {
       case '=':
-        equals(local_code_tree, local_code_tree, code, code_length, i);
+        equals(local_code_tree, local_code_tree->back, code, code_length, i);
         break;
       default:
         break;

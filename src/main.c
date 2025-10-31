@@ -82,5 +82,5 @@ struct p_node_s {
 
   p_node code_tree = create_tree(PROGRAM_p, COMPLEX, 0, code_lex_index);
   tree_engine(&code_tree, lexed_code, code_lex_index);
-  printf("%d\n", (&code_tree)->rank); // "ab = a"
+  printf("%zu\n", (&code_tree)->end); // "ab = a"
 }
