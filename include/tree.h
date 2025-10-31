@@ -23,9 +23,9 @@ enum p_node_type_e {NUL_p, SOH_p, STX_p, ETX_p, EOT_p, ENQ_p, ACK_p, BEL_p, BS_p
   TILDA_p, DEL_p, PROGRAM_p, STATEMENT_p, PAREN_EXPR_p, EXPR_p, ASSIGN_p, CALL_p, SEQ_p, VEC_p, VAR_p, INT_p, FLOAT_p}; // ADD MORE WHENEVER
 
 enum p_node_rank_e {
-  COMPLEX, /* literal means that something is only one layer_p, like a number_p,
+  LITERAL, /* literal means that something is only one layer_p, like a number_p,
               while complex means multiple layers, like an expression with a variable */
-  LITERAL
+  COMPLEX
 };
 
 struct p_node_s {
