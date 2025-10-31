@@ -1,4 +1,4 @@
-SRC = src/main.c src/lex/lex_ll.c src/lex.c src/tree.c
+SRC = src/*.c src/lex/*.c 
 END = coalc.bin 
 END_D = coalc_debug.bin
 
